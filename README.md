@@ -18,3 +18,5 @@ yarn link
 2、在创建的服务器代码目录的game-server使用yarn link "pinus",关联本地的pinus中的pinus
 3、执行pinus start即可
 ```
+# 4、测试结果
+![image](https://github.com/lyndev/pinus-test-ccc3.8/assets/14561386/58d99e13-d8f0-458b-a1cc-832805e6a56f)
