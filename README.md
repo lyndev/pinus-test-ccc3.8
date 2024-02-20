@@ -20,3 +20,9 @@ yarn link
 ```
 # 4、测试结果
 ![image](https://github.com/lyndev/pinus-test-ccc3.8/assets/14561386/58d99e13-d8f0-458b-a1cc-832805e6a56f)
+
+# 5、如果要使用其他编码，思路是一样的
+pinus-client.js修改的地方
+![image](https://github.com/lyndev/pinus-test-ccc3.8/assets/14561386/6a6ef21e-6a26-4034-bae4-a8bc29681d16)
+pinus的code.ts修改的地方
+![image](https://github.com/lyndev/pinus-test-ccc3.8/assets/14561386/5ccedaec-05a1-43ab-9ab9-f6999950254d)
