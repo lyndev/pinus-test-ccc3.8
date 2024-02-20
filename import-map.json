@@ -1,0 +1,5 @@
+{
+    "imports": {
+        "pinus-cc": "./assets/libs/pomelo-client.mjs"
+    }
+}

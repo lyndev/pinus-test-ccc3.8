@@ -1,0 +1,10 @@
+{
+  "name": "pinus-test-ccc3.8",
+  "uuid": "3e0e54d8-89fc-4b99-a47c-e796e2acb640",
+  "creator": {
+    "version": "3.8.0"
+  },
+  "dependencies": {
+    "msgpackr": "^1.10.1"
+  }
+}
