@@ -1407,6 +1407,7 @@ Emitter.prototype.hasListeners = function(event){
   };
 
   pomelo.request = function(route, msg, cb) {
+    msg = pack(msg)
     if(arguments.length === 2 && typeof msg === 'function') {
       cb = msg;
       msg = {};
