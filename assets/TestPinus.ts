@@ -6,12 +6,31 @@ export class TestPinus extends Component {
     btnClick: Node = null
     host: string
     port: number = 0
+    bLogined: boolean = false
     start() {
-        this.loadServerList()
+        // this.loadServerList()
         this.btnClick.on("click", this.onClickTest, this)
-        // this.connect()
+        this.gateLogin()
         let onDis = this.onDis.bind(this)
         pinus.on('disconnect', onDis);
+    }
+
+    public gateLogin() {
+        pinus.init({
+            host: "127.0.0.1",
+            port: 3014,
+            log: true
+        }, () => {
+            let data1 = { uid: "test_uid" }
+            pinus.request("gate.gateHandler.queryEntry", data1, (data) => {
+                console.log("获取正式服务器地址成功,", data)
+                this.host = data['host']
+                this.port = data['port']
+                pinus.disconnect()
+                this.connect(this.host, this.port)
+            });
+        })
+
     }
 
     public loadServerList() {
@@ -36,23 +55,23 @@ export class TestPinus extends Component {
         xhr.timeout = 10000
     }
 
-
     connect(host, port) {
         pinus.init({
             host: host,
             port: port,
             log: true
-        }, function () {
+        },  ()=> {
             let data1 = { test: "客户端登录" }
-            pinus.request("connector.entryHandler.entry", data1, function (data) {
+            pinus.request("connector.entryHandler.entry", data1, (data) => {
                 console.log("连接成功,", data)
+                this.bLogined = true
             });
         })
     }
 
     onClickTest() {
         let data1 = { test: "客户端点击测试" }
-        pinus.request("connector.playerHandler.test", data1, function (data) {
+        pinus.request("connector.playerHandler.test", data1, (data) => {
             if (data.code === 200) {
                 console.log("服务器收到点击效果成功", data.msg)
             } else {
@@ -62,8 +81,12 @@ export class TestPinus extends Component {
     }
 
     onDis(event) {
-        console.error("dis net, will re connect")
-        this.connect(this.host, this.port)
+        if (this.bLogined) {
+            console.error("dis net, will re connect")
+            this.connect(this.host, this.port)
+        } else {
+            console.log("还未登录")
+        }
     }
 
     update(deltaTime: number) {
