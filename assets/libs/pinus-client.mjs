@@ -1530,9 +1530,11 @@ Emitter.prototype.hasListeners = function(event){
   handlers[Package.TYPE_KICK] = onKick;
 
   var processPackage = function(msgs) {
+    console.log("接受服务器消息:",msgs)
     if(Array.isArray(msgs)) {
       for(var i=0; i<msgs.length; i++) {
         var msg = msgs[i];
+       
         handlers[msg.type](msg.body);
       }
     } else {

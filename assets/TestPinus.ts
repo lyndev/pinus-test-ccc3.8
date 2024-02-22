@@ -13,6 +13,10 @@ export class TestPinus extends Component {
         this.gateLogin()
         let onDis = this.onDis.bind(this)
         pinus.on('disconnect', onDis);
+
+        pinus.on("test_push", (data) => {
+            console.log("测试服务器推送消息,", data)
+        });
     }
 
     public gateLogin() {
